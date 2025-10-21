@@ -1,0 +1,151 @@
+<!--форма заказа-->
+<section class="order" id="order">
+  <div class="container">
+    <div class="d-flex align-items-center flex-column  wow animate__backInLeft">
+
+      <!-- Сообщение об успехе -->
+      <div *ngIf="isSuccess" class="alert alert-success col-lg-6 text-center">
+        <h4>Спасибо за заказ!</h4>
+        <p>Ваш заказ успешно оформлен.</p>
+        <button class="btn btn-outline-success" (click)="resetForm()">Сделать новый заказ</button>
+      </div>
+
+      <!-- Форма заказа -->
+      <form *ngIf="!isSuccess"
+            [formGroup]="orderForm"
+            class="row g-3 col-lg-6 my-0 mx-auto"
+            (ngSubmit)="createOrder()">
+        <h2 class="text-center m-5" id="h2-order">Сделать заказ</h2>
+
+        <!-- Товар -->
+        <div class="col-12">
+          <label for="product-input" class="form-label">Товар</label>
+          <input type="text"
+                 class="form-control"
+                 id="product-input"
+                 formControlName="product"
+                 [class.is-invalid]="product?.invalid
+                 && (product?.touched || isSubmitted)">
+          <div class="invalid-feedback" *ngIf="product?.invalid
+                  && (product?.touched || isSubmitted)">
+            {{ getValidationMessage('product') }}
+          </div>
+        </div>
+
+        <!-- Имя -->
+        <div class="col-md-6">
+          <label for="name-input" class="form-label">Имя</label>
+          <input type="text" class="form-control" id="name-input"
+                 formControlName="name"
+                 [class.is-invalid]="name?.invalid
+                 && (name?.touched || isSubmitted)">
+          <div class="invalid-feedback" *ngIf="name?.invalid
+                  && (name?.touched || isSubmitted)">
+            {{ getValidationMessage('name') }}
+          </div>
+        </div>
+
+        <!-- Фамилия -->
+        <div class="col-md-6">
+          <label for="surname-input" class="form-label">Фамилия</label>
+          <input type="text" class="form-control" id="surname-input"
+                 formControlName="last_name"
+                 [class.is-invalid]="last_name?.invalid
+                 && (last_name?.touched || isSubmitted)">
+          <div class="invalid-feedback" *ngIf="last_name?.invalid
+                  && (last_name?.touched || isSubmitted)">
+            {{ getValidationMessage('last_name') }}
+          </div>
+        </div>
+
+        <!-- Телефон -->
+        <div class="col-12">
+          <label for="phone-input" class="form-label">Телефон</label>
+          <input type="text" class="form-control" id="phone-input"
+                 formControlName="phone"
+                 placeholder="+79991234567 или 89991234567"
+                 [class.is-invalid]="phone?.invalid
+                 && (phone?.touched || isSubmitted)">
+          <div class="invalid-feedback" *ngIf="phone?.invalid
+                  && (phone?.touched || isSubmitted)">
+            {{ getValidationMessage('phone') }}
+          </div>
+          <div class="form-text">Формат: 11 цифр, можно начинать с +7 или 8</div>
+        </div>
+
+        <!-- Страна -->
+        <div class="col-md-6">
+          <label for="country-input" class="form-label">Страна</label>
+          <input type="text" class="form-control" id="country-input"
+                 formControlName="country"
+                 [class.is-invalid]="country?.invalid
+                 && (country?.touched || isSubmitted)">
+          <div class="invalid-feedback" *ngIf="country?.invalid
+                  && (country?.touched || isSubmitted)">
+            {{ getValidationMessage('country') }}
+          </div>
+        </div>
+
+        <!-- Индекс -->
+        <div class="col-md-6">
+          <label for="index-input" class="form-label">Индекс</label>
+          <input type="text" class="form-control" id="index-input"
+                 formControlName="zip"
+                 [class.is-invalid]="zip?.invalid
+                 && (zip?.touched || isSubmitted)">
+          <div class="invalid-feedback" *ngIf="zip?.invalid
+                  && (zip?.touched || isSubmitted)">
+            {{ getValidationMessage('zip') }}
+          </div>
+        </div>
+
+        <!-- Адрес -->
+        <div class="col-12">
+          <label for="address-input" class="form-label">Адрес</label>
+          <input type="text" class="form-control" id="address-input"
+                 formControlName="address"
+                 placeholder="ул. Примерная, д. 123, кв. 45"
+                 [class.is-invalid]="address?.invalid
+                 && (address?.touched || isSubmitted)">
+          <div class="invalid-feedback" *ngIf="address?.invalid
+                  && (address?.touched || isSubmitted)">
+            {{ getValidationMessage('address') }}
+          </div>
+          <div class="form-text">Можно использовать буквы, цифры, пробелы, дефис и слеш</div>
+        </div>
+
+        <!-- Комментарий -->
+        <div class="col-12">
+          <label for="comment-input" class="form-label">Комментарий к заказу</label>
+          <textarea class="form-control"
+                    id="comment-input"
+                    formControlName="comment"
+                    rows="3">
+          </textarea>
+        </div>
+
+        <!-- Кнопка отправки и сообщение об ошибке -->
+        <div class="col-12">
+          <button class="btn btn-primary hvr-bounce-in"
+                  id="creat-order"
+                  type="submit"
+                  [disabled]="isLoading || (orderForm.invalid && isSubmitted)">
+
+            <span *ngIf="!isLoading">Отправить</span>
+            <!-- процесс отправки-->
+            <span *ngIf="isLoading">
+              <span class="spinner-border spinner-border-sm me-2 disabled" role="status" aria-hidden="true"></span>
+              Отправка...
+            </span>
+          </button>
+
+          <div *ngIf="isError" class="alert alert-danger mt-3 mb-0">
+            Произошла ошибка. Попробуйте еще раз.
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>

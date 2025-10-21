@@ -1,0 +1,27 @@
+<!--карточки товара-->
+<section class="products" id="products">
+  <div class="container">
+    <h1 class="text-center m-5">{{ product.title }}</h1>
+    <div class="product d-flex justify-content-center w-100 wow animate__backInLeft">
+      <div class="w-100">
+
+        <ng-template [ngIf]="product.image">
+          <a class="product__image d-flex justify-content-center" href="{{product.image}}">
+            <img src="{{product.image}}" class="card-img-top" style="width: 18rem;" alt="{{product.title}}">
+          </a>
+        </ng-template>
+
+        <div class="card-body">
+          <p class="card-text">{{ product.description }}</p>
+          <div class="product__action d-flex justify-content-end fs-5" #elem>
+            <p class="card-text d-flex m-0 p-0 me-4 align-items-center ">Цена: {{ product.price }} руб.</p>
+            <a class="btn btn-primary hvr-bounce-in fs-5" routerLink="/order" [queryParams]="{product: product.title}">
+              Купить
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

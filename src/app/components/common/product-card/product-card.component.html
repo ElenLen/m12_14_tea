@@ -1,0 +1,14 @@
+<div class="product ">
+  <div class="card" style="width: 18rem;">
+    <ng-template [ngIf]="product.image">
+      <a class="product__image " href="{{product.image}}">
+        <img src="{{product.image}}" class="card-img-top" alt="{{product.title}}">
+      </a>
+    </ng-template>
+
+    <div class="card-body">
+      <h5 class="card-title">{{ product.title }}</h5>
+      <a [routerLink]="['/products', product.id]" class="btn btn-primary hvr-bounce-in ">Подробнее</a>
+    </div>
+  </div>
+</div>

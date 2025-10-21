@@ -1,0 +1,91 @@
+<!--слайдер карусель-->
+<section class="main my-5">
+  <div class="container">
+
+    <div class="carousel">
+      <!-- Слайды -->
+      <div class="carousel-container">
+        <div class="carousel-track"
+             [style.transform]="'translateX(-' + (currentSlide * 100) + '%)'">
+
+          <div class="carousel-slide"
+               *ngFor="let slide of slides; let i = index">
+            <div [class]="slide.class">
+              <img [src]="slide.img"
+                   class="d-block w-100"
+                   [alt]="slide.alt">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Навигация -->
+      <button class="carousel-nav carousel-prev"
+              (click)="prevSlide()"
+              (mouseenter)="stopAutoSlide()"
+              (mouseleave)="startAutoSlide()">
+        ‹
+      </button>
+      <button class="carousel-nav carousel-next"
+              (click)="nextSlide()"
+              (mouseenter)="stopAutoSlide()"
+              (mouseleave)="startAutoSlide()">
+        ›
+      </button>
+
+      <!-- Индикаторы -->
+      <!--      <div class="carousel-indicators">-->
+      <!--        <button *ngFor="let slide of slides; let i = index"-->
+      <!--                class="indicator"-->
+      <!--                [class.active]="i === currentSlide"-->
+      <!--                (click)="goToSlide(i)">-->
+      <!--          <span class="visually-hidden">Slide {{ i + 1 }}</span>-->
+      <!--        </button>-->
+      <!--      </div>-->
+
+    </div>
+
+  </div>
+</section>
+
+
+<!--вопросы accordion-->
+<section>
+  <div class="container">
+    <div class="d-flex align-items-center flex-column">
+      <h2 class="text-center m-5">Ответы на часто задаваемые вопросы</h2>
+
+      <div class="accordion col-lg-8 my-0 mx-auto" id="accordionPanelsStayOpenExample">
+
+        <div class="accordion-item rounded my-2 custom-accordion-item"
+             *ngFor="let item of accordionItems; let i = index">
+
+          <h2 class="accordion-header custom-accordion-header" [id]="item.id">
+            <button class="accordion-button custom-accordion-button"
+                    [class.collapsed]="!item.isOpen"
+                    type="button"
+                    (click)="toggleItem(i)"
+                    [attr.aria-expanded]="item.isOpen"
+                    [attr.aria-controls]="'stayOpen' + i">
+              <span class="accordion-title">{{ item.title }}</span>
+            </button>
+          </h2>
+
+          <div [id]="'stayOpen' + i"
+               class="accordion-collapse collapse custom-accordion-collapse"
+               [class.show]="item.isOpen"
+               [attr.aria-labelledby]="item.id">
+            <div class="accordion-body custom-accordion-body">
+              <p class="mb-0">{{ item.content }}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Попап -->
+<app-popup *ngIf="showPopup" (closed)="onPopupClosed()"></app-popup>

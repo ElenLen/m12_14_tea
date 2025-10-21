@@ -1,0 +1,15 @@
+<!--карточки товара-->
+<section class="products" id="products">
+  <div class="container">
+    <h2 class="text-center m-5">Наши чайные коллекции</h2>
+    <div class="d-flex justify-content-center gap-3 flex-wrap  wow animate__backInLeft">
+      <product-card *ngFor="let product of products " [product]="product"></product-card>
+    </div>
+
+    <!--    loader-->
+    <div *ngIf="loading" class="loader-bg">
+      <div class="loader"></div>
+    </div>
+
+  </div>
+</section>

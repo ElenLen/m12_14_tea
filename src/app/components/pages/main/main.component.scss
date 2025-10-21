@@ -1,0 +1,140 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  width: 100%;
+
+  .carousel-container {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff91;;
+    color: #0d6efd94;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+    border: 2px solid #0d6efd94;
+
+    &:hover {
+      background: white;
+    }
+
+    &.carousel-prev {
+      left: 20px;
+    }
+
+    &.carousel-next {
+      right: 20px;
+    }
+  }
+
+  //.carousel-indicators {
+  //  position: absolute;
+  //  bottom: 20px;
+  //  left: 0;
+  //  right: 0;
+  //  display: flex;
+  //  justify-content: center;
+  //  gap: 10px;
+  //  z-index: 10;
+  //
+  //  .indicator {
+  //    width: 12px;
+  //    height: 12px;
+  //    border-radius: 50%;
+  //    border: none;
+  //    background: rgba(255, 255, 255, 0.5);
+  //    cursor: pointer;
+  //    transition: background 0.3s ease;
+  //
+  //    &.active {
+  //      background: white;
+  //    }
+  //
+  //    &:hover {
+  //      background: rgba(255, 255, 255, 0.8);
+  //    }
+  //  }
+  //}
+}
+
+
+@media (max-width: 768px) {
+  .carousel {
+    .carousel-nav {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+
+      &.carousel-prev {
+        left: 10px;
+      }
+
+      &.carousel-next {
+        right: 10px;
+      }
+    }
+  }
+}
+
+
+.accordion {
+  width: 100%;
+
+  .accordion-item {
+    width: 100%;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+    .accordion-button {
+      width: 100%;
+      background-color: #007bff !important;
+      color: white !important;
+      border: none;
+      border-radius: 0;
+      padding: 1rem;
+
+      // фикс иконка
+      &::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+      }
+
+      &:not(.collapsed)::after {
+        transform: rotate(180deg);
+      }
+    }
+
+    .accordion-body {
+      width: 100%;
+      background-color: white;
+    }
+  }
+}
