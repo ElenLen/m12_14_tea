@@ -1,9 +1,12 @@
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ProductType} from "../types/product.type";
+import {ProductType} from "../../../types/product.type";
 import {Injectable} from "@angular/core";
+import {environment} from "../../../environments/environment";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductService {
   private products: ProductService[] = [];
 
@@ -12,12 +15,12 @@ export class ProductService {
 
   //    ф-ция возвращающая продукты чая
   getProducts(): Observable<ProductType[]> {
-    return this.http.get<ProductType[]>('https://testologia.ru/tea');
+    return this.http.get<ProductType[]>(environment.apiURL + 'tea');
   }
 
   // запрос одного товара чая
   getProduct(id: number): Observable<ProductType> {
-    return this.http.get<ProductType>(`https://testologia.ru/tea?id=${id}`);
+    return this.http.get<ProductType>(environment.apiURL + `tea?id=${id}`);
   }
 
   //   для отправки заказа
@@ -34,7 +37,7 @@ export class ProductService {
     return this.http.post<{
       success: boolean,
       message?: string
-    }>(`https://testologia.ru/order-tea`, data);
+    }>(environment.apiURL + `order-tea`, data);
   }
 
 }

@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ProductService} from "../../../services/product.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ProductService} from "../../shared/services/product.service";
 
 @Component({
   selector: 'app-order',

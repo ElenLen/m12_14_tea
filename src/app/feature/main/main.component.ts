@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subject, Subscription, timer} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 interface AccordionItem {
   title: string;
@@ -19,7 +19,7 @@ export class MainComponent implements OnInit, OnDestroy {
   // для хранения подписки
   private popupSubscription: Subscription | null = null;
 
-  constructor() {
+  constructor( ) {
   }
 
   slides = [

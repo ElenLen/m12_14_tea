@@ -31,3 +31,6 @@ app-root {
   0% { transform: rotate(0deg); }
   100% {transform: rotate(360deg); }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

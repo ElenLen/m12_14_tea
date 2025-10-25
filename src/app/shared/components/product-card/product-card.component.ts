@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ProductType} from "../../../types/product.type";
-import {CartProductService} from "../../../services/cart-product.server";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CartProductService} from "../../services/cart-product.server";
+import {ProductType} from "../../../../types/product.type";
 
 @Component({
   selector: 'product-card',
